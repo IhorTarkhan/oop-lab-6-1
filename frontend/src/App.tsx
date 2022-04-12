@@ -27,14 +27,14 @@ export const App = () => (
   </BrowserRouter>
 );
 
-function Home() {
+const Home = () => {
   return <h2>Home</h2>;
-}
+};
 
-function About() {
+const About = () => {
   return <h2>About</h2>;
-}
+};
 
-function Users() {
+const Users = () => {
   return <h2>Users</h2>;
-}
+};
