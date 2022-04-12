@@ -1,50 +1,40 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
-const useStyles = makeStyles({
-  root: {
-    textAlign: "center",
-  },
-  header: {
-    backgroundColor: "#282c34",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "calc(10px + 2vmin)",
-    color: "white",
-    margin: -8,
-  },
-  logo: {
-    height: "40vmin",
-    pointerEvents: "none",
-  },
-  link: {
-    color: "#61dafb",
-  },
-});
+export const App = () => (
+  <BrowserRouter>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+        </ul>
+      </nav>
 
-function App() {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <header className={classes.header}>
-        <img alt={"logo"} src={"images/logo.svg"} className={classes.logo} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className={classes.link}
-          href={"https://reactjs.org"}
-          target={"_blank"}
-          rel={"noopener noreferrer"}
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
-  );
+  </BrowserRouter>
+);
+
+function Home() {
+  return <h2>Home</h2>;
 }
 
-export default App;
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}
