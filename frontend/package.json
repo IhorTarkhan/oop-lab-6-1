@@ -5,9 +5,11 @@
   "dependencies": {
     "@mui/material": "^5.6.1",
     "@mui/styles": "^5.6.1",
+    "@react-keycloak/web": "^3.4.0",
     "@types/node": "^17.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "keycloak-js": "^17.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^6.3.0",
