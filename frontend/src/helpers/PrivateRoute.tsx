@@ -5,6 +5,7 @@ const PrivateRoute = ({ children } : any) => {
 
   const isLoggedIn = keycloak.authenticated;
   console.log(keycloak.realmAccess?.roles);
+  console.log(keycloak);
 
   return isLoggedIn ? children : null;
 };

@@ -1,3 +1,6 @@
+src/main/resources/application-configuration.json
+src/main/resources/keycloak.json
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
