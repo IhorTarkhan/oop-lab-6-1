@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/coffee-user")
 public class CurrentUserServlet extends HttpServlet {
-  private final ServletUtil servletUtil = new ServletUtil();
-  private final CoffeeUserService coffeeUserService = new CoffeeUserService();
+    private final ServletUtil servletUtil = new ServletUtil();
+    private final CoffeeUserService coffeeUserService = new CoffeeUserService();
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) {
-    servletUtil.execute(request, response, coffeeUserService::getCoffeeUser);
-    servletUtil.execute(request, response, coffeeUserService::getCoffeeUser, "coffee_user");
-    servletUtil.execute(request, response, coffeeUserService::getCoffeeUser, "coffee_admin");
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        servletUtil.execute(request, response, coffeeUserService::getCoffeeUser);
+        servletUtil.execute(request, response, coffeeUserService::getCoffeeUser, "coffee_user");
+        servletUtil.execute(request, response, coffeeUserService::getCoffeeUser, "coffee_admin");
+    }
 }

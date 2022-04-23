@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class CoffeeAdminEntity {
-  private Long id;
-  private String username;
+    private Long id;
+    private String username;
 }
