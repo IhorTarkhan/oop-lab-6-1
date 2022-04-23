@@ -1,5 +1,6 @@
 src/main/resources/application-configuration.json
 src/main/resources/keycloak.json
+src/main/resources/liquibase.properties
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
