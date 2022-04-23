@@ -17,6 +17,7 @@ import java.util.Set;
 import static com.ihortarkhan.ooplab61.configurations.PropertiesConfiguration.getProperties;
 import static org.keycloak.authorization.client.AuthzClient.create;
 
+@Deprecated
 @WebServlet("/hello-servlet")
 public class HelloServlet extends HttpServlet {
   @Override
