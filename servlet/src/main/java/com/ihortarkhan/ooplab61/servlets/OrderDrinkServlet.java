@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/current-user")
-public class CurrentUserServlet extends HttpServlet {
+@WebServlet("/order-drink")
+public class OrderDrinkServlet extends HttpServlet {
     private final ServletUtil servletUtil = new ServletUtil();
     private final CoffeeUserService coffeeUserService = new CoffeeUserService();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        servletUtil.execute(request, response, coffeeUserService::getCoffeeUser, "coffee_user");
+        servletUtil.execute(request, response, r -> {
+            coffeeUserService.orderDrink(r);
+            return new Object();
+        }, "coffee_user");
     }
 }

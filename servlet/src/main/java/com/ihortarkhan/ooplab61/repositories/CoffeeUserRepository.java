@@ -38,4 +38,12 @@ public class CoffeeUserRepository {
                     .build();
         }
     }
+
+    @SneakyThrows
+    public void updateAmount(Long id, Long nuwAmount) {
+        repositoryUtil.openStatement().get()
+                .executeQuery(
+                        "UPDATE coffee_user SET amount = %s WHERE id = %s;"
+                                .formatted(nuwAmount, id));
+    }
 }

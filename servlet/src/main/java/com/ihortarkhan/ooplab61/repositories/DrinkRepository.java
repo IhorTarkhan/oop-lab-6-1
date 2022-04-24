@@ -66,6 +66,5 @@ public class DrinkRepository {
                 .executeQuery(
                         "UPDATE drink SET count = %s WHERE id = %s;"
                                 .formatted(nuwCount, id));
-
     }
 }
