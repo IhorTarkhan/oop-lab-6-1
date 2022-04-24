@@ -13,7 +13,7 @@ public class OrderDrinkServlet extends HttpServlet {
     private final CoffeeUserService coffeeUserService = new CoffeeUserService();
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         servletUtil.execute(request, response, r -> {
             coffeeUserService.orderDrink(r);
             return new Object();

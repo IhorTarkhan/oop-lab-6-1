@@ -13,7 +13,7 @@ public class RefreshDrinkServlet extends HttpServlet {
     private final CoffeeAdminService coffeeAdminService = new CoffeeAdminService();
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doPut(HttpServletRequest request, HttpServletResponse response) {
         servletUtil.execute(request, response, r -> {
             coffeeAdminService.refreshDrink(r);
             return new Object();
