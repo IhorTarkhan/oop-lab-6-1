@@ -5,8 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CoffeeUserEntity {
+public class DrinkEntity {
     private Long id;
-    private String username;
-    private Long amount;
+    private String name;
+    private Long price;
+    private Long count;
 }

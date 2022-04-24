@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Deprecated
 @WebServlet("/coffee-user")
 public class CurrentUserServlet extends HttpServlet {
     private final ServletUtil servletUtil = new ServletUtil();

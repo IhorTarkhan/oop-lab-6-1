@@ -1,5 +1,6 @@
 package com.ihortarkhan.ooplab61.services;
 
+import com.ihortarkhan.ooplab61.dto.response.CoffeeUserResponse;
 import com.ihortarkhan.ooplab61.entities.CoffeeUserEntity;
 import com.ihortarkhan.ooplab61.repositories.CoffeeUserRepository;
 import lombok.SneakyThrows;
@@ -11,8 +12,13 @@ public class CoffeeUserService {
     private final CoffeeUserRepository coffeeUserRepository = new CoffeeUserRepository();
 
     @SneakyThrows
-    public CoffeeUserEntity getCoffeeUser(HttpServletRequest request) {
+    public CoffeeUserResponse getCoffeeUser(HttpServletRequest request) {
         String username = authorizationService.getUsername(request);
-        return coffeeUserRepository.findByUsername(username);
+        CoffeeUserEntity coffeeUser = coffeeUserRepository.findByUsername(username);
+        return CoffeeUserResponse.builder()
+                .id(coffeeUser.getId())
+                .username(coffeeUser.getUsername())
+                .amount(coffeeUser.getAmount())
+                .build();
     }
 }

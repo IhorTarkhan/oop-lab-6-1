@@ -26,13 +26,15 @@ public class CoffeeUserRepository {
     @SneakyThrows
     public CoffeeUserEntity findByUsername(String username) {
         try (ResultSet resultSet = repositoryUtil.openStatement().get()
-                .executeQuery("SELECT * FROM coffee_user WHERE username = '%s'".formatted(username))) {
+                .executeQuery("SELECT * FROM coffee_user WHERE username = '%s';".formatted(username))) {
             if (resultSet.getFetchSize() != 1) {
                 throw new HttpException(HttpServletResponse.SC_NOT_FOUND);
             }
+            resultSet.next();
             return CoffeeUserEntity.builder()
                     .id(resultSet.getLong("id"))
                     .username(resultSet.getString("username"))
+                    .amount(resultSet.getLong("amount"))
                     .build();
         }
     }
