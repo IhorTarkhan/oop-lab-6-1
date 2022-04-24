@@ -13,37 +13,36 @@ public class CoffeeUserRepository {
     @SneakyThrows
     public CoffeeUserRepository() {
         Class.forName("org.postgresql.Driver");
-        repositoryUtil.openStatement().get().execute("""
+        repositoryUtil.runOnStatement(s -> s.execute("""
                 CREATE TABLE IF NOT EXISTS coffee_user
                 (
                     id       serial PRIMARY KEY,
                     username text,
                     amount   numeric
                 );
-                """);
+                """));
     }
 
     @SneakyThrows
     public CoffeeUserEntity findByUsername(String username) {
-        try (ResultSet resultSet = repositoryUtil.openStatement().get()
-                .executeQuery("SELECT * FROM coffee_user WHERE username = '%s';".formatted(username))) {
-            if (resultSet.getFetchSize() != 1) {
+        return repositoryUtil.runOnStatement(s -> {
+            ResultSet resultSet = s.executeQuery("SELECT * FROM coffee_user WHERE username = '%s';"
+                    .formatted(username));
+            if (!resultSet.next()) {
                 throw new HttpException(HttpServletResponse.SC_NOT_FOUND);
             }
-            resultSet.next();
             return CoffeeUserEntity.builder()
                     .id(resultSet.getLong("id"))
                     .username(resultSet.getString("username"))
                     .amount(resultSet.getLong("amount"))
                     .build();
-        }
+        });
     }
 
     @SneakyThrows
     public void updateAmount(Long id, Long nuwAmount) {
-        repositoryUtil.openStatement().get()
-                .executeQuery(
-                        "UPDATE coffee_user SET amount = %s WHERE id = %s;"
-                                .formatted(nuwAmount, id));
+        repositoryUtil.runOnStatement(s -> s.executeQuery(
+                "UPDATE coffee_user SET amount = %s WHERE id = %s;"
+                        .formatted(nuwAmount, id)));
     }
 }

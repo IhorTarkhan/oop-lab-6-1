@@ -18,10 +18,12 @@ public class ServletUtil extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @SneakyThrows
-    public <RESPONSE> void execute(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   Function<HttpServletRequest, RESPONSE> executor,
-                                   String authority) {
+    public <RESPONSE> void execute(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Function<HttpServletRequest, RESPONSE> executor,
+            String authority) {
+        setAccessControlHeaders(response);
         if (!authorizationService.hasAuthority(request, authority)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
@@ -30,9 +32,11 @@ public class ServletUtil extends HttpServlet {
     }
 
     @SneakyThrows
-    public <RESPONSE> void execute(HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   Function<HttpServletRequest, RESPONSE> executor) {
+    public <RESPONSE> void execute(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Function<HttpServletRequest, RESPONSE> executor) {
+        setAccessControlHeaders(response);
         response.setContentType(APPLICATION_JSON);
         response.setCharacterEncoding(UTF_8);
         PrintWriter out = response.getWriter();
@@ -47,6 +51,10 @@ public class ServletUtil extends HttpServlet {
             e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
+    }
 
+    private void setAccessControlHeaders(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Access-Control-Allow-Methods", "GET");
     }
 }

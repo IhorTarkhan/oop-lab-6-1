@@ -13,27 +13,27 @@ public class CoffeeAdminRepository {
     @SneakyThrows
     public CoffeeAdminRepository() {
         Class.forName("org.postgresql.Driver");
-        repositoryUtil.openStatement().get().execute("""
+        repositoryUtil.runOnStatement(s -> s.execute("""
                 CREATE TABLE IF NOT EXISTS coffee_admin
                 (
                     id       serial PRIMARY KEY,
                     username text
                 );
-                """);
+                """));
     }
 
     @SneakyThrows
     public CoffeeAdminEntity findByUsername(String username) {
-        try (ResultSet resultSet = repositoryUtil.openStatement().get()
-                .executeQuery("SELECT * FROM coffee_admin WHERE username = '%s';".formatted(username))) {
-            if (resultSet.getFetchSize() != 1) {
+        return repositoryUtil.runOnStatement(s -> {
+            ResultSet resultSet = s.executeQuery("SELECT * FROM coffee_admin WHERE username = '%s';"
+                    .formatted(username));
+            if (!resultSet.next()) {
                 throw new HttpException(HttpServletResponse.SC_NOT_FOUND);
             }
-            resultSet.next();
             return CoffeeAdminEntity.builder()
                     .id(resultSet.getLong("id"))
                     .username(resultSet.getString("username"))
                     .build();
-        }
+        });
     }
 }

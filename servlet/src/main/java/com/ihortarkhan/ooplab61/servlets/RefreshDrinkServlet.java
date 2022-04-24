@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Refresh-drink")
+@WebServlet("/refresh-drink")
 public class RefreshDrinkServlet extends HttpServlet {
     private final ServletUtil servletUtil = new ServletUtil();
     private final CoffeeAdminService coffeeAdminService = new CoffeeAdminService();
@@ -18,5 +18,11 @@ public class RefreshDrinkServlet extends HttpServlet {
             coffeeAdminService.refreshDrink(r);
             return new Object();
         }, "coffee_admin");
+    }
+
+
+    private void setAccessControlHeaders(HttpServletResponse resp) {
+        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
+        resp.setHeader("Access-Control-Allow-Methods", "GET");
     }
 }
