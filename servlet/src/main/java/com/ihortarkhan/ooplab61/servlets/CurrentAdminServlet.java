@@ -14,6 +14,6 @@ public class CurrentAdminServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        servletUtil.execute(request, response, coffeeAdminService::getCoffeeAdmin, "coffee_user");
+        servletUtil.execute(request, response, coffeeAdminService::getCoffeeAdmin, "coffee_admin");
     }
 }

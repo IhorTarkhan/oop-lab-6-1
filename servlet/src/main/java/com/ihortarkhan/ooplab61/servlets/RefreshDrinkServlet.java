@@ -20,10 +20,4 @@ public class RefreshDrinkServlet extends HttpServlet {
             return SuccessResponse.ok();
         }, "coffee_admin");
     }
-
-
-    private void setAccessControlHeaders(HttpServletResponse resp) {
-        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
-        resp.setHeader("Access-Control-Allow-Methods", "GET");
-    }
 }

@@ -33,6 +33,6 @@ public class CoffeeAdminService {
                 request.getReader().lines().collect(Collectors.joining(System.lineSeparator())),
                 RefreshDrinkRequest.class);
         DrinkEntity drinkEntity = drinkRepository.findById(body.getDrinkId());
-        drinkRepository.updateCount(drinkEntity.getId(), drinkEntity.getPrice() + body.getCount());
+        drinkRepository.updateCount(drinkEntity.getId(), drinkEntity.getCount() + body.getCount());
     }
 }
