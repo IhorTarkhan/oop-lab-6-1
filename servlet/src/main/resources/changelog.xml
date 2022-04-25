@@ -4,15 +4,35 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet id="1" author="bob">
-        <createTable tableName="department">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="active" type="boolean" defaultValueBoolean="true"/>
-        </createTable>
+    <changeSet id="1" author="Ihor.Tarkhan">
+        <sql>
+            CREATE TABLE IF NOT EXISTS coffee_admin
+            (
+                id       serial PRIMARY KEY,
+                username text
+            );
+            CREATE TABLE IF NOT EXISTS drink
+            (
+                id    serial PRIMARY KEY,
+                name  text,
+                price numeric,
+                count numeric
+            );
+            CREATE TABLE IF NOT EXISTS coffee_user
+            (
+                id       serial PRIMARY KEY,
+                username text,
+                amount   numeric
+            );
+
+            insert into public.coffee_admin (id, username)
+            values (1, 'myadmin');
+            insert into public.coffee_user (id, username, amount)
+            values (1, 'myuser', 1000);
+            insert into public.drink (id, name, price, count)
+            values (2, 'Tee', 2, 200),
+                   (3, 'Americano', 4, 50),
+                   (1, 'Coffee', 3, 100);
+        </sql>
     </changeSet>
 </databaseChangeLog>
