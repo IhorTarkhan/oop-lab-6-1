@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import "./DrinksTable.css";
+import { useNavigate } from "react-router-dom";
 
 type CurrentUser = {
   username: string;
@@ -15,6 +16,7 @@ type Drink = {
 
 export const CoffeeUserPage = () => {
   const { keycloak } = useKeycloak();
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState<CurrentUser>();
   const [drinks, setDrinks] = useState<Drink[]>();
 
@@ -34,6 +36,10 @@ export const CoffeeUserPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (!keycloak.authenticated) {
+        navigate("/");
+        return;
+      }
       updateScreen();
     }, 300);
   }, []);
@@ -47,6 +53,7 @@ export const CoffeeUserPage = () => {
       <h1>
         {currentUser.username}: {currentUser.amount}$
       </h1>
+      <button onClick={() => keycloak.logout()}>Logout</button>
       <table id="drinks">
         <thead>
           <tr>
