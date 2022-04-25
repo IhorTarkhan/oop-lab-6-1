@@ -37,6 +37,6 @@ public class CoffeeUserService {
         CoffeeUserEntity coffeeUser = coffeeUserRepository.findByUsername(username);
         DrinkEntity drinkEntity = drinkRepository.findById(body.getDrinkId());
         drinkRepository.updateCount(drinkEntity.getId(), drinkEntity.getCount() - body.getCount());
-        coffeeUserRepository.updateAmount(coffeeUser.getId(), drinkEntity.getPrice() * body.getCount());
+        coffeeUserRepository.updateAmount(coffeeUser.getId(), coffeeUser.getAmount() - drinkEntity.getPrice() * body.getCount());
     }
 }

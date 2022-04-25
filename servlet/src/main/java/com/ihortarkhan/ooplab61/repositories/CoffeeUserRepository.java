@@ -41,7 +41,7 @@ public class CoffeeUserRepository {
 
     @SneakyThrows
     public void updateAmount(Long id, Long nuwAmount) {
-        repositoryUtil.runOnStatement(s -> s.executeQuery(
+        repositoryUtil.runOnStatement(s -> s.execute(
                 "UPDATE coffee_user SET amount = %s WHERE id = %s;"
                         .formatted(nuwAmount, id)));
     }

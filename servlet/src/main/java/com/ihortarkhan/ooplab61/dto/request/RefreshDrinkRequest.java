@@ -1,10 +1,10 @@
 package com.ihortarkhan.ooplab61.dto.request;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class RefreshDrinkRequest {
     private Long drinkId;
     private Long count;

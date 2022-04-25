@@ -21,5 +21,5 @@ export const Home = () => {
     }, 500);
   }, []);
 
-  return null;
+  return <h1>Loading...</h1>;
 };

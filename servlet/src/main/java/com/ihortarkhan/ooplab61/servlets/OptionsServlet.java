@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class OptionsServlet extends HttpServlet {
     @Override
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Headers", "Authorization");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST");
+        response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
     }
 }

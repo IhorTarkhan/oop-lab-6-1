@@ -29,7 +29,7 @@ public class DrinkRepository {
     @SneakyThrows
     public List<DrinkEntity> findAll() {
         return repositoryUtil.runOnStatement(s -> {
-            ResultSet resultSet = s.executeQuery("SELECT * FROM drink;");
+            ResultSet resultSet = s.executeQuery("SELECT * FROM drink ORDER BY id;");
             ArrayList<DrinkEntity> result = new ArrayList<>();
             while (resultSet.next()) {
                 result.add(DrinkEntity.builder()
@@ -63,7 +63,7 @@ public class DrinkRepository {
     @SneakyThrows
     public void updateCount(Long id, Long nuwCount) {
         repositoryUtil.runOnStatement(s ->
-                s.executeQuery("UPDATE drink SET count = %s WHERE id = %s;"
+                s.execute("UPDATE drink SET count = %s WHERE id = %s;"
                         .formatted(nuwCount, id)));
     }
 }

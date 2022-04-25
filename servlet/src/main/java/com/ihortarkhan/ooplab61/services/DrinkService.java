@@ -2,7 +2,6 @@ package com.ihortarkhan.ooplab61.services;
 
 import com.ihortarkhan.ooplab61.dto.response.DrinkResponse;
 import com.ihortarkhan.ooplab61.repositories.DrinkRepository;
-import lombok.SneakyThrows;
 
 import java.util.List;
 

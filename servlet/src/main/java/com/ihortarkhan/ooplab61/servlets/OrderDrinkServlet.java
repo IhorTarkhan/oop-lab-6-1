@@ -1,5 +1,6 @@
 package com.ihortarkhan.ooplab61.servlets;
 
+import com.ihortarkhan.ooplab61.dto.response.SuccessResponse;
 import com.ihortarkhan.ooplab61.services.CoffeeUserService;
 
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,7 @@ public class OrderDrinkServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         servletUtil.execute(request, response, r -> {
             coffeeUserService.orderDrink(r);
-            return new Object();
+            return SuccessResponse.ok();
         }, "coffee_user");
     }
 }
