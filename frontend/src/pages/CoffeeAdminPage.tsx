@@ -81,7 +81,10 @@ export const CoffeeAdminPage = () => {
                       "http://localhost:8080/servlet_war_exploded/refresh-drink",
                       {
                         method: "PUT",
-                        headers: { Authorization: "Bearer " + keycloak.token },
+                        headers: {
+                          Authorization: "Bearer " + keycloak.token,
+                          "Content-Type": "application/json",
+                        },
                         body: JSON.stringify({
                           drinkId: drink.id,
                           count: count,
