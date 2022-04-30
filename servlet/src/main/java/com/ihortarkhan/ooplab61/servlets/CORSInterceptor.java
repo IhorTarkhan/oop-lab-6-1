@@ -39,6 +39,9 @@ public class CORSInterceptor implements Filter {
     }
 
     private boolean isAllowedOrigin(String origin){
+        if (origin == null) {
+            return true;
+        }
         for (String allowedOrigin : allowedOrigins) {
             if(origin.equals(allowedOrigin)) return true;
         }
